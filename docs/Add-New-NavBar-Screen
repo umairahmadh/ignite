@@ -1,0 +1,46 @@
+In order to add a new screen on the bottom navbar on the boilerplate code, here is what I did.
+
+1) Create a New Screen (or duplicate from a demo screen):
+
+2) Export the screated screeen in the screens/index:
+    export * from "./HomeScreen"
+
+3) Edit ./app/navigators/DemoNavigator.tsx
+  Import the created screen from screens:
+      import { DemoCommunityScreen, DemoShowroomScreen, DemoDebugScreen, HomeScreen } from "../screens"
+
+  In export type DemoTabParamList,
+  Add the screen component in 
+      HomeScreen: undefined
+      ...
+  
+  In the return,
+  Add a nav:
+  
+        <Tab.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: translate("demoNavigator.HomeTab"),
+            tabBarIcon: ({ focused }) => (
+              <Icon icon="components" color={focused && colors.tint} size={30} />
+            ),
+          }}
+        />
+
+
+4) Edit ../i18n/en/ts
+add tab name for your new screen in english, and other languages in their respective translation files.
+
+  demoNavigator: {
+    registerScreenTab: "Register",
+    manualsScreenTab: "Manuals",
+    faultCodesScreenTab: "Fault Codes",
+    guidesScreenTab: "Guides",
+    componentsTab: "Components",
+    debugTab: "Debug",
+    communityTab: "Community",
+    podcastListTab: "Podcast",
+    HomeTab: "Register",
+  
+
